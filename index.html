@@ -91,15 +91,15 @@ var clickedLayer = this.textContent;
 e.preventDefault();
 e.stopPropagation();
  
-var visibility = map.getLayoutProperty(clickedLayer, 'none');
+var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
  
 // toggle layer visibility by changing the layout object's visibility property
 if (visibility === 'visible') {
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
 this.className = '';
 } else {
 this.className = 'active';
-map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
 }
 };
  
