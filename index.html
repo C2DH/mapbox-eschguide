@@ -69,51 +69,31 @@
     });
 
     map.on('load', function () {
-        // add source and layer for museums
-        map.addSource('museums', {
-            type: 'vector',
+   
+	    // add source and layer for buildings
+        map.addSource('buildings', {
+            type: 'fill',
             url: 'mapbox://mapbox.2opop9hr'
         });
         map.addLayer({
-            'id': 'museums',
-            'type': 'circle',
-            'source': 'museums',
+            'id': 'buildings',
+            'type': 'fill',
+            'source': 'composite',
             'layout': {
                 // make layer visible by default
                 'visibility': 'visible'
             },
             'paint': {
-                'circle-radius': 8,
-                'circle-color': 'rgba(55,148,179,1)'
+                'fill-color': 'hsl(199, 98%, 59%)'
             },
-            'source-layer': 'museum-cusco'
+            'source-layer': 'batiments_guide_historiquecon-9z4fr0'
         });
 
-        // add source and layer for contours
-        map.addSource('contours', {
-            type: 'vector',
-            url: 'mapbox://mapbox.mapbox-terrain-v2'
-        });
-        map.addLayer({
-            'id': 'contours',
-            'type': 'line',
-            'source': 'contours',
-            'source-layer': 'contour',
-            'layout': {
-                // make layer visible by default
-                'visibility': 'visible',
-                'line-join': 'round',
-                'line-cap': 'round'
-            },
-            'paint': {
-                'line-color': '#877b59',
-                'line-width': 1
-            }
-        });
+        
     });
 
     // enumerate ids of the layers
-    var toggleableLayerIds = ['contours', 'museums'];
+    var toggleableLayerIds = ['batiments', 'tour-11', 'tours', 'buildings'];
 
     // set up the corresponding toggle button for each layer
     for (var i = 0; i < toggleableLayerIds.length; i++) {
