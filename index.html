@@ -70,45 +70,7 @@
 
     map.on('load', function () {
    
-	    // add source and layer for buildings
-        map.addSource('buildings', {
-            type: 'fill',
-            url: 'mapbox://mapbox.2opop9hr'
-        });
-        map.addLayer({
-            'id': 'buildings',
-            'type': 'fill',
-            'source': 'composite',
-            'layout': {
-                // make layer visible by default
-                'visibility': 'visible'
-            },
-            'paint': {
-                'fill-color': 'hsl(199, 98%, 59%)'
-            },
-            'source-layer': 'batiments_guide_historiquecon-9z4fr0'
-        });
 
-            // add source and layer for tours
-        map.addSource('tours', {
-            type: 'line',
-            url: 'mapbox://mapbox.2opop9hr'
-        });
-        map.addLayer({
-            'id': 'tours',
-            'type': 'line',
-            'source': 'composite',
-            'layout': {
-                // make layer visible by default
-                'visibility': 'visible'
-            },
-            'paint': {
-                'line-color': 'hsl(199, 98%, 59%)'
-		'line-width': '3'
-
-            },
-            'source-layer': 'tour_01-07_12converted-0vz0ek'
-        });
     });
 
     // enumerate ids of the layers
