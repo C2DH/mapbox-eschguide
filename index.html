@@ -91,7 +91,7 @@ var clickedLayer = this.textContent;
 e.preventDefault();
 e.stopPropagation();
  
-var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+var visibility = map.getLayoutProperty(clickedLayer, 'none');
  
 // toggle layer visibility by changing the layout object's visibility property
 if (visibility === 'visible') {
