@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Show and hide layers</title>
+<title>Welcome to Esch</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
@@ -95,11 +95,11 @@ var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
  
 // toggle layer visibility by changing the layout object's visibility property
 if (visibility === 'visible') {
-map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
 this.className = '';
 } else {
 this.className = 'active';
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
 }
 };
  
