@@ -69,43 +69,7 @@ center: [5.976816732902083, 49.493178110353789]
 });
  
 map.on('load', function () {
-// add source and layer for buildings
-map.addSource('buildings', {
-type: 'fill',
-url: 'mapbox://mapbox.adx63690'
-});
-map.addLayer({
-'id': 'buildings',
-'type': 'fill',
-'source': 'composite',
-'layout': {
-// make layer visible by default
-'visibility': 'visible'
-},
-'source-layer': 'batiments_guide_historiquecon-9z4fr0'
-});
- 
-// add source and layer for contours
-map.addSource('contours', {
-type: 'vector',
-url: 'mapbox://mapbox.mapbox-terrain-v2'
-});
-map.addLayer({
-'id': 'contours',
-'type': 'line',
-'source': 'contours',
-'source-layer': 'contour',
-'layout': {
-// make layer visible by default
-'visibility': 'visible',
-'line-join': 'round',
-'line-cap': 'round'
-},
-'paint': {
-'line-color': '#877b59',
-'line-width': 1
-}
-});
+
 });
  
 // enumerate ids of the layers
