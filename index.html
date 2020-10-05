@@ -18,7 +18,7 @@ background: #fff;
 position: absolute;
 z-index: 1;
 top: 10px;
-right: 10px;
+left: 10px;
 border-radius: 3px;
 width: 120px;
 border: 1px solid rgba(0, 0, 0, 0.4);
@@ -54,6 +54,8 @@ color: #ffffff;
 #menu a.active:hover {
 background: #3074a4;
 }
+	
+	
 </style>
   
 <nav id="menu"></nav>
@@ -104,6 +106,7 @@ map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
 var layers = document.getElementById('menu');
 layers.appendChild(link);
 }
+	
 // Add geolocate control to the map.
 map.addControl(
 new mapboxgl.GeolocateControl({
