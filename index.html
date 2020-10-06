@@ -68,6 +68,8 @@ container: 'map',
 style: 'mapbox://styles/orielisaratunilu/ckfwcdaxq0a8d19mx05navfuq',
 zoom: 13,
 center: [5.976816732902083, 49.493178110353789]
+map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+	
 });
  
 map.on('load', function () {
