@@ -94,14 +94,14 @@ e.stopPropagation();
 var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
  
 // toggle layer visibility by changing the layout object's visibility property
-if (visibility === 'none') {
-map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-this.className = 'active';
-} else {
-this.className = '';
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+ if (visibility === 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
 
-}
 };
  
 var layers = document.getElementById('menu');
