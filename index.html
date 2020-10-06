@@ -145,7 +145,7 @@ trackUserLocation: true
 	.setHTML('<h1>Welcome to Esch</h1>')
 	.addTo(map);
 	map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
-
+L.mapbox.legendControl({ position: 'topright' }).addLegend('<strong>My walk from the White House to the hill!</strong>').addTo(map);
  
 </script>
  
