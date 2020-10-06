@@ -140,11 +140,8 @@ enableHighAccuracy: true
 trackUserLocation: true
 })
 );
-	var popup = new mapboxgl.Popup({ closeOnClick: false })
-	.setLngLat([5.976816732902083, 49.493178110353789])
-	.setHTML('<h1>Welcome to Esch</h1>')
-	.addTo(map);
-	map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+
+//	map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
 L.mapbox.legendControl({ position: 'topright' }).addLegend('<strong>My walk from the White House to the hill!</strong>').addTo(map);
  
 </script>
