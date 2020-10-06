@@ -138,9 +138,9 @@ positionOptions: {
 enableHighAccuracy: true
 },
 trackUserLocation: true
-})
+},
+{position: 'bottom-right'})
 );
-map.addControl(new mapboxgl.GeolocateControl({position: 'bottom-right'}));
 
 
 var myLayer = L.mapbox.featureLayer().addTo(map);
