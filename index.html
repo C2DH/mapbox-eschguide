@@ -71,7 +71,6 @@ center: [5.976816732902083, 49.493178110353789]
 });
  
 map.on('load', function () {
-L.mapbox.legendControl({ position: 'top-left' }).addLegend('<strong>My walk from the White House to the hill!</strong>').addTo(map);
 
 	// add source and layer for contours
 map.addSource('Tour_1', {
@@ -142,6 +141,7 @@ trackUserLocation: true
 }),'bottom-right'
 );		      
 			      
+L.mapbox.legendControl({ position: 'top-left' }).addLegend('<strong>My walk from the White House to the hill!</strong>').addTo(map);
 
 	
 </script>
