@@ -73,8 +73,7 @@ center: [5.976816732902083, 49.493178110353789]
  
 map.on('load', function () {
 
-});
- 
+
 // enumerate ids of the layers
 var toggleableLayerIds = ['Tour-1', 'Tour-2', 'Tour-3', 'Tour-4'];
  
@@ -123,7 +122,8 @@ trackUserLocation: true
 	.setHTML('<h1>Welcome to Esch</h1>')
 	.addTo(map);
 	map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
-
+});
+ 
 </script>
  
 </body>
