@@ -72,6 +72,27 @@ center: [5.976816732902083, 49.493178110353789]
  
 map.on('load', function () {
 
+	// add source and layer for contours
+map.addSource('Tour_1', {
+type: 'line',
+url: 'mapbox://mapbox.6l67ipef'
+});
+map.addLayer({
+'id': 'Tour_1',
+'type': 'line',
+'source': 'tour_1-ahivu5',
+'source-layer': 'tour_1-ahivu5',
+'layout': {
+// make layer visible by default
+'visibility': 'none',
+'line-join': 'round',
+'line-cap': 'round'
+},
+'paint': {
+'line-color': '#877b59',
+'line-width': 6
+}
+});
 	
 
 });
