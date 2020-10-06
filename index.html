@@ -68,7 +68,6 @@ container: 'map',
 style: 'mapbox://styles/orielisaratunilu/ckfwcdaxq0a8d19mx05navfuq',
 zoom: 13,
 center: [5.976816732902083, 49.493178110353789]
-map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
 	
 });
  
@@ -123,6 +122,8 @@ trackUserLocation: true
 	.setLngLat([5.976816732902083, 49.493178110353789])
 	.setHTML('<h1>Welcome to Esch</h1>')
 	.addTo(map);
+	map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+
 </script>
  
 </body>
