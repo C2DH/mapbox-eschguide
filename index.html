@@ -6,7 +6,6 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-
 <style>
 	body { margin: 0; padding: 0; }
 	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -96,29 +95,29 @@ center: [5.976816732902083, 49.493178110353789]
 map.on('load', function () {
 
 	// add source and layer for contours
-//map.addSource('Tour_1', {
-//type: 'line',
-//url: 'mapbox://mapbox.6l67ipef'
-//});
-//map.addLayer({
-//'id': 'Tour_1',
-//'type': 'line',
-//'source': 'tour_1-ahivu5',
-//'source-layer': 'tour_1-ahivu5',
-//'layout': {
+map.addSource('Tour_1', {
+type: 'line',
+url: 'mapbox://mapbox.6l67ipef'
+});
+map.addLayer({
+'id': 'Tour_1',
+'type': 'line',
+'source': 'tour_1-ahivu5',
+'source-layer': 'tour_1-ahivu5',
+'layout': {
 // make layer visible by default
-//'visibility': 'none',
-//'line-join': 'round',
-//'line-cap': 'round'
-//},
-//'paint': {
-//'line-color': '#877b59',
-//'line-width': 6
-//}
-//});
+'visibility': 'none',
+'line-join': 'round',
+'line-cap': 'round'
+},
+'paint': {
+'line-color': '#877b59',
+'line-width': 6
+}
+});
 	
 
-//});
+});
 
 // enumerate ids of the layers
 var toggleableLayerIds = ['Tour_1', 'Tour_2', 'Tour_3', 'Tour_4', 'Tour_5', 'Tour_6', 'Tour_7', 'Tour_8', 'Tour_9', 'Tour_10', 'Tour_11', 'Tour_12'];
