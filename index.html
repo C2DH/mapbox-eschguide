@@ -96,7 +96,7 @@ center: [5.976816732902083, 49.493178110353789]
 map.on('style.load', function () {
 	new MapboxGLLayers({position: 'top-left'}).addTo(map);
 	new MapboxGLLayers({
-		layers: {
+    		layers: {
 			'T1': ['Tour_1', 'buildings_Tour_1'],
      			'T2': ['Tour_2', 'buildings_Tour_2'],
       			'T3': ['Tour_3', 'buildings_Tour_3'],
@@ -111,21 +111,10 @@ map.on('style.load', function () {
       			'T12': ['Tour_12', 'buildings_Tour_12']
 		},
 		onChange: function (selected) { console.log('Selected:', selected); }
-	}).addTo(map)
-});
+  		}).addTo(map);
+})
 
-
-	
-// Add geolocate control to the map.
-map.addControl(
-new mapboxgl.GeolocateControl({
-positionOptions: {
-enableHighAccuracy: true
-},
-trackUserLocation: true
-}),'bottom-right'
-);		      
-			      
+	      
 	
 </script>
  
