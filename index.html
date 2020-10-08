@@ -93,7 +93,7 @@ zoom: 13,
 center: [5.976816732902083, 49.493178110353789]
 	
 });
-map.on("load", function () {
+map.on('style.load', function () {
 	new MapboxGLLayers({position: 'top-left'}).addTo(map);
 	new MapboxGLLayers({
 		layers: {
@@ -114,40 +114,7 @@ map.on("load", function () {
 	}).addTo(map)
 });
 
-// enumerate ids of the layers
-var toggleableLayerIds = [
-  "T1", "T2", "T3", "T4","T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"
-]; 
-// set up the corresponding toggle button for each layer
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-var id = toggleableLayerIds[i];
- 
-var link = document.createElement('a');
-link.href = '#';
-link.className = 'active';
-link.textContent = id;
- 
-link.onclick = function (e) {
-var clickedLayer = this.textContent;
-e.preventDefault();
-e.stopPropagation();
- 
-var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
- 
-// toggle layer visibility by changing the layout object's visibility property
- if (visibility === 'visible') {
-                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                this.className = '';
-            } else {
-                this.className = 'active';
-                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            }
 
-};
- 
-var layers = document.getElementById('menu');
-layers.appendChild(link);
-}
 	
 // Add geolocate control to the map.
 map.addControl(
