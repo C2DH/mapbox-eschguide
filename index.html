@@ -93,9 +93,9 @@ zoom: 13,
 center: [5.976816732902083, 49.493178110353789]
 	
 });
- 
+var Layers = require('mapbox-gl-layers')
 map.on("load", function () {
-   new MapboxGLLayers({
+   new Layers({
     layers: {
       'T1': ['Tour_1', 'buildings_Tour_1'],
       'T2': ['Tour_2', 'buildings_Tour_2'],
