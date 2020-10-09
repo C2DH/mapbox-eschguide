@@ -1,235 +1,353 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Welcome to Esch</title>
-        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-        <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-        <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            #map {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <style>
-            h2 {
-                margin: 10px;
-                font-size: 2.5em;
-            }
-            h3 {
-                margin: 10px;
-                font-size: 1.2em;
-            }
-            .map-overlay {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                background: rgba(5, 122, 240, 0.4);
-                margin: 15px 25px;
-                font-family: "Open Sans", sans-serif;
-                color: #ffffff;
-                overflow: auto;
-                border-radius: 3px;
-            }
 
-            #menu {
-                background: #fff;
-                position: absolute;
-                z-index: 1;
-                top: 10px;
-                right: 10px;
-                border: 1px solid rgba(0, 0, 0, 0.4);
-                font-family: "Open Sans", sans-serif;
-            }
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to Esch</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e0e8f0;
+    }
 
-            #menu a {
-                font-size: 13px;
-                color: #404040;
-                display: block;
-                margin: 0;
-                padding: 0;
-                padding: 10px;
-                text-decoration: none;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-                text-align: center;
-            }
+    h2 {
+      margin: 10px;
+      font-size: 2.5em;
+    }
 
-            #menu a:last-child {
-                border: none;
-            }
+    h3 {
+      margin: 10px;
+      font-size: 1.2em;
+    }
 
-            #menu a:hover {
-                background-color: #f8f8f8;
-                color: #404040;
-            }
+    #menu {
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 4.5rem;
+      right: 0;
+      transform: translate(10rem, 0);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      -moz-box-shadow: 0 0 2px rgba(0,0,0,.1);
+      -webkit-box-shadow: 0 0 2px rgba(0,0,0,.1);
+      box-shadow: 0 0 0 2px rgba(0,0,0,.1);
+      border-radius:2px;
+    }
 
-            #menu a.active {
-                background-color: #057af0;
-                color: #ffffff;
-            }
+    
 
-            #menu a.active:hover {
-                background: #045cb5;
-            }
-         
-        </style>
-        <nav id="menu" class="p-1">
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_1" id="layerSwitch1">
-            <label class="custom-control-label" for="layerSwitch1">Tour 1</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_2" id="layerSwitch2">
-            <label class="custom-control-label" for="layerSwitch2">Tour 2</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_3" id="layerSwitch3">
-            <label class="custom-control-label" for="layerSwitch3">Tour 3</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_4" id="layerSwitch4">
-            <label class="custom-control-label" for="layerSwitch4">Tour 4</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_5" id="layerSwitch5">
-            <label class="custom-control-label" for="layerSwitch5">Tour 5</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_6" id="layerSwitch6">
-            <label class="custom-control-label" for="layerSwitch6">Tour 6</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_7" id="layerSwitch7">
-            <label class="custom-control-label" for="layerSwitch7">Tour 7</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_8" id="layerSwitch8">
-            <label class="custom-control-label" for="layerSwitch8">Tour 8</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_9" id="layerSwitch9">
-            <label class="custom-control-label" for="layerSwitch9">Tour 9</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_10" id="layerSwitch10">
-            <label class="custom-control-label" for="layerSwitch10">Tour 10</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_11" id="layerSwitch11">
-            <label class="custom-control-label" for="layerSwitch11">Tour 11</label>
-          </div>
-          <div class="custom-control custom-switch m-1">
-            <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_12" id="layerSwitch12">
-            <label class="custom-control-label" for="layerSwitch12">Tour 12</label>
-          </div>
-        </nav>
-        <div id="map"></div>
-        <div class="map-overlay">
-            <h2>Bienvenue</h2>
-            <br />
-            <h3>
-                Guide historique et architectural <br />
-                Esch-sur-Alzette
-            </h3>
-        </div>
-        <script>
-            var boundariesIndex = {
-              'Tour_1': {
-                _sw: { lng:5.981861205450658, lat:49.4955627219879 },
-                _ne: { lng:5.985543006250339, lat:49.49849869686367 }
-              },
-              'Tour_2': {
-                _sw: { lng:5.986582742667041, lat:49.49819359380267 },
-                _ne: { lng:5.989136150492207, lat:49.50493209769161 }
-              },
-              'Tour_3': {
-                _sw: { lng:5.977522231497845, lat:49.491504787527894 },
-                _ne: { lng:5.985162639007132, lat:49.4969352763093 }
-              },
-              'Tour_4': {
-                _sw: { lng:5.96831710941715, lat:49.4894548301359 },
-                _ne: { lng:5.975656749806356, lat:49.504660752612956 }
-              },
-              'Tour_5': {
-                _sw: { lng:5.974959822618449, lat:49.49119032224094 },
-                _ne: { lng:5.982837590336275, lat:49.49607001489892 }
-              },
-              'Tour_6': {
-                _sw: { lng:5.97580515277969, lat:49.48586662426343 },
-                _ne: { lng:5.979901286200036, lat:49.49248464028056 }
-              },
-              'Tour_7': {
-                _sw: { lng:5.9797834619754, lat:49.491559321760555 },
-                _ne: { lng:5.986794036804535, lat:49.50234330787017 }
-              },
-              'Tour_8': {
-                _sw: { lng:5.975295170910235, lat:49.46724423176476 },
-                _ne: { lng:5.990114505231992, lat:49.48861330183593 }
-              },
-              'Tour_9': {
-                _sw: { lng:5.977095665650133, lat:49.49850019463652 },
-                _ne: { lng:5.984686298260727, lat:49.50177634622913 }
-              },
-              'Tour_10': {
-                _sw: { lng:5.981393921934717, lat:49.50712129165721},
-                _ne: { lng:5.994964844741864, lat:49.51381669744194 }
-              },
-              'Tour_11': {
-                _sw: { lng:5.968854399375471, lat:49.49228488459035},
-                _ne: { lng:5.989138779671904, lat:49.50842757961729 }
-              },
-              'Tour_12': {
-                _sw: { lng:5.945955811283529, lat:49.4995201307145 },
-                _ne: { lng:5.94925610398615, lat:49.503984868862744 }
-              }
-            };
-            
-            mapboxgl.accessToken = "pk.eyJ1Ijoib3JpZWxpc2FyYXR1bmlsdSIsImEiOiJja2ZwMXIwcXMwZHB6MnFwYWRncDhmcGdkIn0.zPOcZlp92FqMjaB_wocPBg";
-            var map = new mapboxgl.Map({
-                container: "map",
-                style: "mapbox://styles/orielisaratunilu/ckfwcdaxq0a8d19mx05navfuq",
-                zoom: 12,
-                center: [5.976816732902083, 49.493178110353789],
-            });
-            
-            map.on("load", function() {
-              var buttons = document.getElementsByClassName('custom-control-input');
-              for(var i = 0,l=buttons.length; i < l; i +=1 ) {
-                buttons[i].addEventListener('change', function(e) {
-                  var visibility = e.target.checked ? 'visible' : 'none';
-                  var tourId = String(this.dataset.layer);
-                  console.info('@change visibility of', this.dataset.layer, 'to', visibility);
-                  map.setLayoutProperty(tourId, 'visibility', visibility);
-                  map.setLayoutProperty('buildings_' + tourId, 'visibility', visibility);
-                  // if it's checked, fitToBounds
-                  if (e.target.checked && boundariesIndex[tourId]) {
-                    map.fitBounds([boundariesIndex[tourId]._sw, boundariesIndex[tourId]._ne]);
-                  }
-                });
-              }
-            })
+    #menu.active {
+      transform: translate(-.5rem);
+    }
+    
+    #button-menu-toggler span.active-only {
+      display: none;
+    }
+    #button-menu-toggler.active span{
+      display: none;
+    }
+    #button-menu-toggler.active span.active-only {
+      display: block;
+    }
+    
+    #map {
+      position: absolute;
+      top: 4rem;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    .map-overlay {
+      position: absolute;
+      top: 2.5rem;
+      left: 2.5rem;
+      background: rgba(5, 122, 240, 0.4);
+      font-family: "Open Sans", sans-serif;
+      color: #ffffff;
+      overflow: auto;
+      border-radius: 2px;
+      -moz-box-shadow: 0 0 2px rgba(0,0,0,.1);
+      -webkit-box-shadow: 0 0 2px rgba(0,0,0,.1);
+      box-shadow: 0 0 0 2px rgba(0,0,0,.1);
+    }
 
-            // Add geolocate control to the map.
-            map.addControl(
-                new mapboxgl.GeolocateControl({
-                    positionOptions: {
-                        enableHighAccuracy: true,
-                    },
-                    trackUserLocation: true,
-                }),
-                "bottom-right"
-            );
-        </script>
-    </body>
+    .header {
+      height: 4rem;
+    }
+
+    .header h1 {
+      font-size: 1rem;
+    }
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      #map {
+        top: 0;
+      }
+      #menu, #menu.active{
+        top: 2.5rem;
+        transform: translate(-2.5rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="menu" class="p-1">
+    <div class="menu-layers">
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_1" id="layerSwitch1">
+        <label class="custom-control-label" for="layerSwitch1">Tour 1</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_2" id="layerSwitch2">
+        <label class="custom-control-label" for="layerSwitch2">Tour 2</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_3" id="layerSwitch3">
+        <label class="custom-control-label" for="layerSwitch3">Tour 3</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_4" id="layerSwitch4">
+        <label class="custom-control-label" for="layerSwitch4">Tour 4</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_5" id="layerSwitch5">
+        <label class="custom-control-label" for="layerSwitch5">Tour 5</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_6" id="layerSwitch6">
+        <label class="custom-control-label" for="layerSwitch6">Tour 6</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_7" id="layerSwitch7">
+        <label class="custom-control-label" for="layerSwitch7">Tour 7</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_8" id="layerSwitch8">
+        <label class="custom-control-label" for="layerSwitch8">Tour 8</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_9" id="layerSwitch9">
+        <label class="custom-control-label" for="layerSwitch9">Tour 9</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_10" id="layerSwitch10">
+        <label class="custom-control-label" for="layerSwitch10">Tour 10</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_11" id="layerSwitch11">
+        <label class="custom-control-label" for="layerSwitch11">Tour 11</label>
+      </div>
+      <div class="custom-control custom-switch m-1">
+        <input type="checkbox" class="custom-control-input" unchecked data-layer="Tour_12" id="layerSwitch12">
+        <label class="custom-control-label" for="layerSwitch12">Tour 12</label>
+      </div>
+    </div>
+  </nav>
+  <div id="map"></div>
+  <header class="d-sm-none header d-flex px-2 py-1 align-items-center">
+    <h1 class="flex-grow-1 m-0">
+      Guide historique et architectural<br />
+      <b>Esch-sur-Alzette</b>
+    </h1>
+    <button class="btn btn-primary btn-sm" id="button-menu-toggler">
+      <span>show tours</span>
+      <span class="active-only">hide tours</span>
+    </button>
+  </header>
+  <div class="map-overlay d-none d-md-block">
+    <h2>Bienvenue</h2>
+    <br />
+    <h3>
+      Guide historique et architectural<br />
+      Esch-sur-Alzette
+    </h3>
+  </div>
+  <script>
+    var boundariesIndex = {
+      'Tour_1': {
+        _sw: {
+          lng: 5.981861205450658,
+          lat: 49.4955627219879
+        },
+        _ne: {
+          lng: 5.985543006250339,
+          lat: 49.49849869686367
+        }
+      },
+      'Tour_2': {
+        _sw: {
+          lng: 5.986582742667041,
+          lat: 49.49819359380267
+        },
+        _ne: {
+          lng: 5.989136150492207,
+          lat: 49.50493209769161
+        }
+      },
+      'Tour_3': {
+        _sw: {
+          lng: 5.977522231497845,
+          lat: 49.491504787527894
+        },
+        _ne: {
+          lng: 5.985162639007132,
+          lat: 49.4969352763093
+        }
+      },
+      'Tour_4': {
+        _sw: {
+          lng: 5.96831710941715,
+          lat: 49.4894548301359
+        },
+        _ne: {
+          lng: 5.975656749806356,
+          lat: 49.504660752612956
+        }
+      },
+      'Tour_5': {
+        _sw: {
+          lng: 5.974959822618449,
+          lat: 49.49119032224094
+        },
+        _ne: {
+          lng: 5.982837590336275,
+          lat: 49.49607001489892
+        }
+      },
+      'Tour_6': {
+        _sw: {
+          lng: 5.97580515277969,
+          lat: 49.48586662426343
+        },
+        _ne: {
+          lng: 5.979901286200036,
+          lat: 49.49248464028056
+        }
+      },
+      'Tour_7': {
+        _sw: {
+          lng: 5.9797834619754,
+          lat: 49.491559321760555
+        },
+        _ne: {
+          lng: 5.986794036804535,
+          lat: 49.50234330787017
+        }
+      },
+      'Tour_8': {
+        _sw: {
+          lng: 5.975295170910235,
+          lat: 49.46724423176476
+        },
+        _ne: {
+          lng: 5.990114505231992,
+          lat: 49.48861330183593
+        }
+      },
+      'Tour_9': {
+        _sw: {
+          lng: 5.977095665650133,
+          lat: 49.49850019463652
+        },
+        _ne: {
+          lng: 5.984686298260727,
+          lat: 49.50177634622913
+        }
+      },
+      'Tour_10': {
+        _sw: {
+          lng: 5.981393921934717,
+          lat: 49.50712129165721
+        },
+        _ne: {
+          lng: 5.994964844741864,
+          lat: 49.51381669744194
+        }
+      },
+      'Tour_11': {
+        _sw: {
+          lng: 5.968854399375471,
+          lat: 49.49228488459035
+        },
+        _ne: {
+          lng: 5.989138779671904,
+          lat: 49.50842757961729
+        }
+      },
+      'Tour_12': {
+        _sw: {
+          lng: 5.945955811283529,
+          lat: 49.4995201307145
+        },
+        _ne: {
+          lng: 5.94925610398615,
+          lat: 49.503984868862744
+        }
+      }
+    };
+
+    mapboxgl.accessToken = "pk.eyJ1Ijoib3JpZWxpc2FyYXR1bmlsdSIsImEiOiJja2ZwMXIwcXMwZHB6MnFwYWRncDhmcGdkIn0.zPOcZlp92FqMjaB_wocPBg";
+    var map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/orielisaratunilu/ckfwcdaxq0a8d19mx05navfuq",
+      zoom: 12,
+      center: [5.976816732902083, 49.493178110353789],
+    });
+
+    map.on("load", function() {
+
+
+      var buttons = document.getElementsByClassName('custom-control-input');
+      for (var i = 0, l = buttons.length; i < l; i += 1) {
+        buttons[i].addEventListener('change', function(e) {
+          var visibility = e.target.checked ? 'visible' : 'none';
+          var tourId = String(this.dataset.layer);
+          console.info('@change visibility of', this.dataset.layer, 'to', visibility);
+          map.setLayoutProperty(tourId, 'visibility', visibility);
+          map.setLayoutProperty('buildings_' + tourId, 'visibility', visibility);
+          // if it's checked, fitToBounds
+          if (e.target.checked && boundariesIndex[tourId]) {
+            map.fitBounds([boundariesIndex[tourId]._sw, boundariesIndex[tourId]._ne]);
+          }
+        });
+      }
+    })
+
+    // Add geolocate control to the map.
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      }),
+      "bottom-right"
+    );
+  </script>
+  <script>
+    (function() {
+      var menuElement = document.getElementById('menu');
+      var buttonMenuTogglerElement = document.getElementById('button-menu-toggler');
+      var isMenuElementOpen = false;
+      // enable tours; only on mobile view
+      buttonMenuTogglerElement.addEventListener('click', function(e) {
+        isMenuElementOpen = !isMenuElementOpen;
+        if (isMenuElementOpen) {
+          menuElement.classList.add('active');
+          buttonMenuTogglerElement.classList.add('active');
+        } else {
+          menuElement.classList.remove('active');
+          buttonMenuTogglerElement.classList.remove('active');
+        }
+      })
+    })()
+  </script>
+</body>
+
 </html>
-
