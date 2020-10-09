@@ -152,6 +152,57 @@
             </h3>
         </div>
         <script>
+            var boundariesIndex = {
+              'Tour_1': {
+                _sw: { lng:5.981861205450658, lat:49.4955627219879 },
+                _ne: { lng:5.985543006250339, lat:49.49849869686367 }
+              },
+              'Tour_2': {
+                _sw: { lng:5.986582742667041, lat:49.49819359380267 },
+                _ne: { lng:5.989136150492207, lat:49.50493209769161 }
+              },
+              'Tour_3': {
+                _sw: { lng:5.977522231497845, lat:49.491504787527894 },
+                _ne: { lng:5.985162639007132, lat:49.4969352763093 }
+              },
+              'Tour_4': {
+                _sw: { lng:5.96831710941715, lat:49.4894548301359 },
+                _ne: { lng:5.975656749806356, lat:49.504660752612956 }
+              },
+              'Tour_5': {
+                _sw: { lng:5.974959822618449, lat:49.49119032224094 },
+                _ne: { lng:5.982837590336275, lat:49.49607001489892 }
+              },
+              'Tour_6': {
+                _sw: { lng:5.97580515277969, lat:49.48586662426343 },
+                _ne: { lng:5.979901286200036, lat:49.49248464028056 }
+              },
+              'Tour_7': {
+                _sw: { lng:5.9797834619754, lat:49.491559321760555 },
+                _ne: { lng:5.986794036804535, lat:49.50234330787017 }
+              },
+              'Tour_8': {
+                _sw: { lng:5.975295170910235, lat:49.46724423176476 },
+                _ne: { lng:5.990114505231992, lat:49.48861330183593 }
+              },
+              'Tour_9': {
+                _sw: { lng:5.977095665650133, lat:49.49850019463652 },
+                _ne: { lng:5.984686298260727, lat:49.50177634622913 }
+              },
+              'Tour_10': {
+                _sw: { lng:5.981393921934717, lat:49.50712129165721},
+                _ne: { lng:5.994964844741864, lat:49.51381669744194 }
+              },
+              'Tour_11': {
+                _sw: { lng:5.968854399375471, lat:49.49228488459035},
+                _ne: { lng:5.989138779671904, lat:49.50842757961729 }
+              },
+              'Tour_12': {
+                _sw: { lng:5.945955811283529, lat:49.4995201307145 },
+                _ne: { lng:5.94925610398615, lat:49.503984868862744 }
+              }
+            };
+            
             mapboxgl.accessToken = "pk.eyJ1Ijoib3JpZWxpc2FyYXR1bmlsdSIsImEiOiJja2ZwMXIwcXMwZHB6MnFwYWRncDhmcGdkIn0.zPOcZlp92FqMjaB_wocPBg";
             var map = new mapboxgl.Map({
                 container: "map",
@@ -169,6 +220,10 @@
                   console.info('@change visibility of', this.dataset.layer, 'to', visibility);
                   map.setLayoutProperty(tourId, 'visibility', visibility);
                   map.setLayoutProperty('buildings_' + tourId, 'visibility', visibility);
+                  // if it's checked, fitToBounds
+                  if (e.target.checked && boundariesIndex[tourId]) {
+                    map.fitBounds([boundariesIndex[tourId]._sw, boundariesIndex[tourId]._ne]);
+                  }
                 });
               }
             })
